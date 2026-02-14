@@ -13,24 +13,19 @@
             overflow: hidden;
         }
 
-        /* Lightbox overlay */
-        .lightbox-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
+        .card-body {
+            text-align: center;
         }
 
-        .lightbox-overlay img {
-            max-width: 80%;
-            max-height: 80%;
-            border-radius: 10px;
+        /* Lightbox effect */
+        .lightbox-active {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.5);
+            z-index: 1050;
+            box-shadow: 0 0 25px rgba(0,0,0,0.8);
+            cursor: pointer;
         }
     </style>
 </head>
@@ -40,14 +35,13 @@
 
     <h2 class="text-center mb-4">Cards Gallery</h2>
 
-    <!-- Single Row -->
     <div class="row">
 
-        <!-- Repeat 6 Cards -->
+        <!-- 6 Cards -->
         <div class="col-md-4 mb-4">
             <div class="card">
                 <img src="Image1" class="card-img-top lightbox">
-                <div class="card-body text-center">
+                <div class="card-body">
                     <h6>Description 1</h6>
                     <p>Details about image 1.</p>
                 </div>
@@ -57,7 +51,7 @@
         <div class="col-md-4 mb-4">
             <div class="card">
                 <img src="Image2" class="card-img-top lightbox">
-                <div class="card-body text-center">
+                <div class="card-body">
                     <h6>Description 2</h6>
                     <p>Details about image 2.</p>
                 </div>
@@ -67,7 +61,7 @@
         <div class="col-md-4 mb-4">
             <div class="card">
                 <img src="Image3" class="card-img-top lightbox">
-                <div class="card-body text-center">
+                <div class="card-body">
                     <h6>Description 3</h6>
                     <p>Details about image 3.</p>
                 </div>
@@ -77,7 +71,7 @@
         <div class="col-md-4 mb-4">
             <div class="card">
                 <img src="Image4" class="card-img-top lightbox">
-                <div class="card-body text-center">
+                <div class="card-body">
                     <h6>Description 4</h6>
                     <p>Details about image 4.</p>
                 </div>
@@ -87,7 +81,7 @@
         <div class="col-md-4 mb-4">
             <div class="card">
                 <img src="Image5" class="card-img-top lightbox">
-                <div class="card-body text-center">
+                <div class="card-body">
                     <h6>Description 5</h6>
                     <p>Details about image 5.</p>
                 </div>
@@ -97,7 +91,7 @@
         <div class="col-md-4 mb-4">
             <div class="card">
                 <img src="Image6" class="card-img-top lightbox">
-                <div class="card-body text-center">
+                <div class="card-body">
                     <h6>Description 6</h6>
                     <p>Details about image 6.</p>
                 </div>
@@ -107,28 +101,11 @@
     </div>
 </div>
 
-<!-- Lightbox Overlay -->
-<div class="lightbox-overlay" id="lightboxOverlay">
-    <img id="lightboxImage">
-</div>
-
-<!-- Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-
 <script>
-    const images = document.querySelectorAll('.lightbox');
-    const overlay = document.getElementById('lightboxOverlay');
-    const overlayImg = document.getElementById('lightboxImage');
-
-    images.forEach(img => {
-        img.addEventListener('click', function() {
-            overlay.style.display = 'flex';
-            overlayImg.src = this.src;
+    document.querySelectorAll('.lightbox').forEach(img => {
+        img.addEventListener('click', function () {
+            this.classList.toggle('lightbox-active');
         });
-    });
-
-    overlay.addEventListener('click', function() {
-        overlay.style.display = 'none';
     });
 </script>
 
